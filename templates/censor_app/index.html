@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="card box-shadow m-2 form-wrap">
+                <div class="card-header text-center">
+                    <h3> Curse words text filter </h3>
+                </div>
+                <form id="form" class="p-4" action='' method="POST">
+                    {% csrf_token %}
+                        <div class="form-group ">
+                            <label for="intext">Input text</label>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <input id='intext' type="text" class="form-control" placeholder="Введите текст" onKeydown="Javascript: if (event.keyCode==13) e.preventDefault();" onclick="if(this.value=='Введите текст') {this.value='';}" {% if from_intext %} value="{{ from_intext }}" {% endif %} name="from-intext">
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="submit-btn mt-0">
+                                        <button type="submit" class="btn btn-primary"  onclick="{intext.value='';}" name="clear" >Clear</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="outtext">Output text</label>
+                            <input class="form-control" type="text" placeholder="" readonly value="{{ from_outtext }}">
+                        </div>
+                        <div class="submit-btn mt-3">
+                            <button type="submit" class="btn btn-primary" name="deep" title="Быстрая фильтрация + обработка слов с   р а з д е л и т е л я м и">Deep censore</button>
+                            <button type="submit" class="btn btn-primary" name="fast" title="Быстрая фильтрация без обработки разделенных слов">Fast censore</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
