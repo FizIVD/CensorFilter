@@ -60,6 +60,7 @@ class RussianLanguagePack1(TranslitLanguagePack):
         u"yi": u"ий",
         u"ui": u"уй",
         u"x": u"кс",
+        u"}|{": u"ж",
     }
 
 
@@ -93,6 +94,7 @@ class RussianLanguagePack2(TranslitLanguagePack):
         u"ee": u"и",
         u"ck": u"к",
         u"yo": u"ё",
+        u"}|{": u"ж"
     }
 
 

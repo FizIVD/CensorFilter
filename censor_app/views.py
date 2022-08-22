@@ -31,7 +31,7 @@ class CensorView(APIView):
         from_intext = request.POST.get('from-intext')
         if 'deep' in request.POST:
             from_outtext = censor_filter(from_intext, MethodType.deep)[0]
-
+            from_outtext = regular_phone_sub(from_outtext)
         elif 'fast' in request.POST:
             from_outtext = censor_filter(from_intext, MethodType.fast)[0]
         elif 'clear' in request.POST:
@@ -134,4 +134,7 @@ def regular_sub(result: str, bad_words_in_text: list) -> (str, list):
                 result = re.sub(bad_re.pattern, "*" * len(mat), result, flags=re.IGNORECASE)
     return result, bad_words_in_text
 
-# print(remove_dup_chars('козел') == 'козел')
+
+def regular_phone_sub(result: str) -> str:
+    result = re.sub('\+?\W*(\d\W*){9}\d\d?', '*' * 11, result)
+    return result
