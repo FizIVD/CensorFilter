@@ -1,0 +1,12 @@
+#Цифры
+1 2 3 4 5 6 7 8 9 0
+#Прописью
+нул нол один два две три четыр пят шест сем девя деся дцат сорок сто ста сти сот тысяч
+#English
+nul one two three four five six seven eight nine ten eleven twe teen ty thirt fif hundred thousand
+#Транслит
+nol odin dva tri chetire pyat shest sem devyat desyat dcat sto sta sti sot tisyach
+#eng 'o' вместо рус 'о'
+нoл oдин сoрoк стo
+#eng 'c' вместо рус 'c'
+

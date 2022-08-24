@@ -5,7 +5,7 @@ import re
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from censor_app import good_words, bad_words, bad_re_set
+from censor_app import good_words, bad_words, bad_re_set, numbers_set
 from transliterate import translit
 
 
@@ -136,5 +136,14 @@ def regular_sub(result: str, bad_words_in_text: list) -> (str, list):
 
 
 def regular_phone_sub(result: str) -> str:
-    result = re.sub('\+?\W*(\d\W*){9}\d\d?', '*' * 11, result)
+    numbers = []
+    for number in numbers_set:
+        if number in result.lower():
+            n = result.count(number)
+            numbers.extend([number] * n)
+    print(numbers)
+    if len(numbers) > 9:
+        for number in numbers:
+            result = re.sub(number, "*" * len(number), result, flags=re.IGNORECASE)
+    # result = re.sub('\+?\W?(\d\W*){9}\d\d?', '*' * 11, result)
     return result

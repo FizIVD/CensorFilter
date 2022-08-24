@@ -8,7 +8,7 @@ autodiscover()
 
 def read_file(name: str):
     open_file = open(os.path.dirname(__file__) + f"/{name}", encoding="utf-8")
-    custom_set = set(re.sub("#.+\n", " ", open_file.read()).split(" "))
+    custom_set = set(re.sub("#.+\n", " ", open_file.read()).replace("\n", " ").split(" "))
     open_file.close()
     custom_set.discard("")
     return custom_set
@@ -28,6 +28,7 @@ def re_custom_set(current_set: set):
 
 bad_words = read_file("BadPartsOfWords.txt")
 good_words = read_file("GoodPartsOfWords.txt")
+numbers_set = read_file("Numbers.txt")
 bad_re_set = re_custom_set(bad_words)
 
 class RussianLanguagePack1(TranslitLanguagePack):
