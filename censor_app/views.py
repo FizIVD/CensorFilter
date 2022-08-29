@@ -41,7 +41,7 @@ class CensorView(APIView):
             from_outtext = censor_filter(from_intext, MethodType.deep)[0]
 
         context = {
-            'from_intext': from_intext,
+            # 'from_intext': from_intext,
             'from_outtext': from_outtext
         }
 
@@ -141,9 +141,8 @@ def regular_phone_sub(result: str) -> str:
         if number in result.lower():
             n = result.count(number)
             numbers.extend([number] * n)
-    print(numbers)
     if len(numbers) > 9:
         for number in numbers:
             result = re.sub(number, "*" * len(number), result, flags=re.IGNORECASE)
-    # result = re.sub('\+?\W?(\d\W*){9}\d\d?', '*' * 11, result)
+    result = re.sub('\+?\W?[\d\W*o?O?о?О?]{9}\d\d?', '*' * 11, result)
     return result

@@ -7,7 +7,7 @@
                 <div class="card-header text-center">
                     <h3> Curse words text filter </h3>
                 </div>
-                <form id="form" class="p-4" action='' method="POST">
+                <form id="form" class="p-4" action='' method="POST" onsubmit="OnEnter">
                     {% csrf_token %}
                         <div class="form-group ">
                             <label for="intext">Input text</label>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="form-group ">
                             <label for="outtext">Output text</label>
-                            <input class="form-control" type="text" placeholder="" readonly value="{{ from_outtext }}">
+                            <input id='outtext' class="form-control" type="text" placeholder="" readonly value="{{ from_outtext }}">
                         </div>
                         <div class="submit-btn mt-3">
                             <button type="submit" class="btn btn-primary" name="deep" id="deep" title="Быстрая фильтрация + обработка слов с   р а з д е л и т е л я м и + цензура телефонов">Deep censore</button>
@@ -34,5 +34,27 @@
             </div>
         </div>
     </div>
+
+    <script>
+    document.getElementById("intext")
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.key === 13) {
+        document.getElementById("deep").click();
+        console.log(document.getElementById("intext").value)
+        let clear = document.getElementById("intext")
+        clear.value = ''
+    }
+});
+{#                function OnEnter() {#}
+{#                let but = document.getElementById("deep")#}
+{#                but.click()#}
+{#                let clear = document.getElementById("intext")#}
+{#                    console.log(clear.value)#}
+{#                    clear.value = ''#}
+{##}
+{#            }#}
+{##}
+        </script>
 {% endblock %}
 
