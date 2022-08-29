@@ -8,5 +8,5 @@ nul one two three four five six seven eight nine ten eleven twe teen ty thirt fi
 nol odin dva tri chetire pyat shest sem devyat desyat dcat sto sta sti sot tisyach
 #eng 'o' вместо рус 'о'
 нoл oдин сoрoк стo
-#eng 'c' вместо рус 'c'
+
 
