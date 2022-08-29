@@ -13,11 +13,11 @@
                             <label for="intext">Input text</label>
                             <div class="row">
                                 <div class="col-md-10">
-                                    <input id='intext' type="text" class="form-control" placeholder="Введите текст" onKeydown="Javascript: if (event.keyCode==13) e.preventDefault();" onclick="if(this.value=='Введите текст') {this.value='';}" {% if from_intext %} value="{{ from_intext }}" {% endif %} name="from-intext">
+                                    <input id='intext' type="text" class="form-control" autofocus placeholder="Введите текст"   onclick="if(this.value=='Введите текст'){this.value='';}" {% if from_intext %} value="{{ from_intext }}" {% endif %} name="from-intext">
                                 </div>
                                 <div class="col-md-2">
                                     <div class="submit-btn mt-0">
-                                        <button type="submit" class="btn btn-primary"  onclick="{intext.value='';}" name="clear" >Clear</button>
+                                        <button class="btn btn-primary" type="button"  onclick={document.getElementById("intext").value='';document.getElementById("outtext").value=''} name="clear" >Clear</button>
                                     </div>
                                 </div>
                             </div>
