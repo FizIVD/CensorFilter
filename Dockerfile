@@ -14,8 +14,6 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 # копируем содержимое текущей папки в контейнер
 EXPOSE 8000
-COPY app .
-
-#EXPOSE 8000
+COPY . .
 
 CMD ["python","manage.py","runserver", "0.0.0.0:8000","--insecure"]
