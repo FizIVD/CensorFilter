@@ -12,7 +12,10 @@ from transliterate import translit
 class CensorFilter(APIView):
 
     def post(self, request) -> HttpResponse:
-        censor_result = censor_filter(request.data.get("text"), request.data.get("method"))
+        if request.data.get("method") == "deep":
+            censor_result = censor_filter(request.data.get("text"), MethodType.deep)
+        else:
+            censor_result = censor_filter(request.data.get("text"), MethodType.fast)
         resp = {"text": censor_result[0],
                 "bad_words": censor_result[1]}
         return Response(resp, status=status.HTTP_200_OK)
