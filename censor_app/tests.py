@@ -1,5 +1,6 @@
 from django.test import TestCase
 
+from censor_app import bad_re_set
 from censor_app.views import censor_filter, MethodType
 
 
@@ -13,3 +14,9 @@ class Tests(TestCase):
 
         result = censor_filter("Не пили сук, подстрахуйся", MethodType.deep)[0]
         self.assertEqual(result, "Не пили сук, подстрахуйся")
+
+        result = censor_filter("Xyecoc", MethodType.deep)[0]
+        self.assertEqual(result, "******")
+
+        result = censor_filter("Нае бали", MethodType.deep)[0]
+        self.assertEqual(result, "*****")

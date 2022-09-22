@@ -88,6 +88,8 @@ def censor_filter(message: str, method: MethodType) -> (str, list):
         # Ищем в тексте совпадения с регулярными выражениями если выбран метод "deep"
     if method == MethodType.deep:
         result, bad_words_in_text = regular_sub(result, bad_words_in_text)
+    if method == MethodType.deep:
+        result, bad_words_in_text = single_sub(result, bad_words_in_text)
     return result, bad_words_in_text
 
 
@@ -135,6 +137,13 @@ def regular_sub(result: str, bad_words_in_text: list) -> (str, list):
             bad_words_in_text.extend(mats)
             for mat in mats:
                 result = re.sub(bad_re.pattern, "*" * len(mat), result, flags=re.IGNORECASE)
+    return result, bad_words_in_text
+
+def single_sub(result: str, bad_words_in_text: list) -> (str, list):
+    single = re.sub(r"\W*_*", "", result).lower()
+    good, bad = translit_good_bad_count(single)
+    if bad > good:
+        result = "*****"
     return result, bad_words_in_text
 
 
