@@ -20,8 +20,7 @@ def re_custom_set(current_set: set):
         word_list = list(word)
         for let_num in range(len(word_list)):
             word_list[let_num] = word_list[let_num] + "\\W*_*"
-
-        re_list.append(re.compile(f"\\b{''.join(word_list)}\\b"))
+        re_list.append(re.compile(f"\\b_*{''.join(word_list)}\\b"))
     re_set = set(re_list)
     return re_set
 
