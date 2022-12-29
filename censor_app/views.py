@@ -138,6 +138,7 @@ def regular_sub(result: str, bad_words_in_text: list) -> (str, list):
                 result = re.sub(bad_re.pattern, "*" * len(mat), result, flags=re.IGNORECASE)
     return result, bad_words_in_text
 
+
 def single_sub(result: str, bad_words_in_text: list, message: str) -> (str, list):
     single = re.sub(r"\W*_*", "", result).lower()
     good, bad = translit_good_bad_count(single)
